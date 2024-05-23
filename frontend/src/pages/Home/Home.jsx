@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import Heder from "../../components/Heder/Heder";
 import Menu from "../../components/Menu/Menu";
 const Home = () => {
+  const [category ,setCategory] =useState("All")
   return (
     <div>
       <Heder />
-      <Menu />
+      <Menu  category={category} setCategory={setCategory}/>
     </div>
   );
 };
