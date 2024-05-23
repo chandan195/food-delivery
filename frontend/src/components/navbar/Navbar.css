@@ -1,29 +1,29 @@
-.navbar{
+.navbar {
     padding: 20px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.navbar .logo{
- width: 150px;   
+.navbar .logo {
+    width: 150px;
 }
 
-.navbar-menu{
-  display: flex;
-  list-style: none;
-  gap: 20px;
-  color: #49557e;
-  font-size: 18px
-
-}
-.navbar-right{
-   display: flex; 
-   align-items: center;
-   gap:40px
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    color: #49557e;
+    font-size: 18px
 }
 
-.navbar button{
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 40px
+}
+
+.navbar button {
     background: transparent;
     font-size: 16px;
     color: #49557e;
@@ -34,12 +34,32 @@
     transition: 0.3s;
 }
 
-.navbar button:hover{
+.navbar button:hover {
     background-color: #fff4f2;
 }
-.navbar .active{
-    font-size:large ;
+
+.navbar .active {
+    font-size: 20px;
     color: #f14343;
     padding-bottom: 2px;
     border-bottom: 2px solid #f14343;
+}
+
+.navbar li {
+    cursor: pointer;
+}
+
+.navbar-search-icon {
+    position: relative;
+}
+
+.navbar-search-icon .dot {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: #f14343;
+    /* color: #f14343; */
+    border-radius: 5px;
+    top: -8px;
+    right: -8px;
 }
