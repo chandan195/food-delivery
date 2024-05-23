@@ -49,3 +49,8 @@
     border: 4px solid tomato;
     padding: 2px;
  }
+
+ .explore-menu-list-item .active-item-name{
+    color: tomato;
+    font-weight: 700;
+ }
