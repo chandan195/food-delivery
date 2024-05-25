@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { food_list } from "../assets/assets";
 const AllProductsSlice = createSlice({
-  name: "All_Products",
+  name: "allProduct",
   initialState: {
-    allProduct: [],
+    allProduct: [food_list],
   },
   reducers: {
     product: (state, action) => {
