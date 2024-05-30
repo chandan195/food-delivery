@@ -1,0 +1,13 @@
+/* .app-download  p{
+    font-size: bold;
+    align-items: center;
+  
+} */
+
+
+.app-download .app-download-platforms img {
+    display: flex;
+    width: 70%;
+
+    padding-bottom: 10px;
+}
