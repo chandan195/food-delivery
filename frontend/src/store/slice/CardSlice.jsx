@@ -37,13 +37,12 @@ const CardSlice = createSlice({
           decrementQty: (state, action) => {
             //* ToDo: handle increment
             state.Card = state.Card.map((item) =>
+             
               item.id === action.payload ? { ...item, qty: item.qty - 1 } : item
+              
             );
       
-            // toast.error("Product qty removed from cart", {
-            //   position: "top-left",
-            // });
-            // localStorage.setItem("cartItems", JSON.stringify(state.cart));
+           
           },
 
     }

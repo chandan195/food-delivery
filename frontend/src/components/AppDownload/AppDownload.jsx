@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets";
 import "./AppDownload.css";
 const AppDownload = () => {
   return (
-    <div className="app-download">
+    <div className="app-download" id="app-download">
       {/* <p> Download Now</p> */}
 
       <div className="app-download-platforms">

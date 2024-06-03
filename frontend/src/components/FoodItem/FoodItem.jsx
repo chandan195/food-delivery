@@ -1,18 +1,50 @@
 import React, { useState } from "react";
 import "./FoodItem.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart ,decrementQty } from "../../store/slice/CardSlice";
 import { assets } from "../../assets/assets";
 const FoodItem = ({ id, name, price, description, image }) => {
-  // console.log(name);
   const [itemCount, setItemCount] = useState(0);
+
+  // console.log(addedItems)
+
+  const dispatch = useDispatch();
+  const handleAdd = () => {
+    dispatch(
+      addToCart({
+        id: id,
+        name: name,
+        price: price,
+        image: image,
+        qty: 1,
+      })
+    );
+    setItemCount((prev) => prev + 1);
+  };
+
+  const handleDecrement = () => {
+    dispatch(
+      decrementQty ({
+        name: name,
+        price: price,
+        image: image,
+        qty: 1,
+      })
+    );
+    setItemCount((prev) => prev -1);
+  };
   return (
     <div className="food-item">
       <div className="food-item-img-container">
         <img src={image} alt="add" className="food-item-image" />
+
+        {/* .................................. */}
         {!itemCount ? (
           <img
             src={assets.add_icon_white}
-            onClick={() => setItemCount((prev) => prev + 1)}
-            alt="icon"
+            onClick={() => handleAdd(id, itemCount, name, price, image)}
+            // onClick={}
+            alt="add To card icon"
             className="add"
           />
         ) : (
@@ -21,11 +53,12 @@ const FoodItem = ({ id, name, price, description, image }) => {
               src={assets.remove_icon_red}
               alt="remove-icon"
               className="food-item"
-              onClick={() => setItemCount((prev) => prev - 1)}
+              onClick={() => handleDecrement (id,itemCount, name, price, image)}
             />
             <p>{itemCount}</p>
             <img
-              onClick={() => setItemCount((prev) => prev + 1)}
+              onClick={() => handleAdd(id, itemCount, name, price, image)}
+              // onClick={() => setItemCount((prev) => prev + 1)}
               src={assets.add_icon_green}
               alt="add-icon"
               className="food-item"
