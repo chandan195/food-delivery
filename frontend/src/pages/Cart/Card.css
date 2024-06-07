@@ -1,0 +1,28 @@
+.card{
+    margin-top: 100px;
+}
+.card-items-title{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr .5fr;
+    align-items: center;
+    color: gray;
+    font-size: max(1vw, 15px);
+}
+.card-items-item{
+    margin: 10px 0px;
+    color: black;
+}
+.card-items-item img{
+    width: 70px;
+    border-radius: 50%;
+}
+.card hr{
+    height: 1px;
+    background-color: #2e2e2e;
+    border: none;
+}
+.card-items-item .cross:hover{
+    cursor: pointer;
+    color:tomato;
+
+}
