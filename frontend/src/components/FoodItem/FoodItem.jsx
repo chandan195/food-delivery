@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./FoodItem.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart ,decrementQty } from "../../store/slice/CardSlice";
+import { addToCart, decrementQty } from "../../store/slice/CardSlice";
 import { assets } from "../../assets/assets";
 const FoodItem = ({ id, name, price, description, image }) => {
   const [itemCount, setItemCount] = useState(0);
@@ -9,6 +9,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
   // console.log(addedItems)
 
   const dispatch = useDispatch();
+
   const handleAdd = () => {
     dispatch(
       addToCart({
@@ -22,16 +23,9 @@ const FoodItem = ({ id, name, price, description, image }) => {
     setItemCount((prev) => prev + 1);
   };
 
-  const handleDecrement = () => {
-    dispatch(
-      decrementQty ({
-        name: name,
-        price: price,
-        image: image,
-        qty: 1,
-      })
-    );
-    setItemCount((prev) => prev -1);
+  const handleDecrement = (id) => {
+    dispatch(decrementQty(id));
+    setItemCount((prev) => prev - 1);
   };
   return (
     <div className="food-item">
@@ -53,7 +47,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
               src={assets.remove_icon_red}
               alt="remove-icon"
               className="food-item"
-              onClick={() => handleDecrement (id,itemCount, name, price, image)}
+              onClick={() => handleDecrement(id)}
             />
             <p>{itemCount}</p>
             <img

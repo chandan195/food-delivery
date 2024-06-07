@@ -44,7 +44,12 @@ const Navbar = ({ setShowLogin }) => {
         <img src={assets.search_icon} alt="search" />
         <div className="navbar-search-icon">
           <Link to="/card">
-            <img src={assets.basket_icon} alt="search" />
+            <img
+              src={assets.basket_icon}
+              alt="search"
+              className={menu === "card" ? "active" : ""}
+              onClick={() => setMenu("card")}
+            />
           </Link>
           <div className="dot"> </div>
         </div>
