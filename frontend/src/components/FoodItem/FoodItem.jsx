@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FoodItem.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart, decrementQty } from "../../store/slice/CardSlice";
 import { assets } from "../../assets/assets";
 const FoodItem = ({ id, name, price, description, image }) => {
   const [itemCount, setItemCount] = useState(0);
 
-  // console.log(addedItems)
+ 
 
   const dispatch = useDispatch();
 
@@ -27,6 +27,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     dispatch(decrementQty(id));
     setItemCount((prev) => prev - 1);
   };
+
   return (
     <div className="food-item">
       <div className="food-item-img-container">

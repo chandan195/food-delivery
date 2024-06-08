@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import FoodItem from "../components/FoodItem/FoodItem";
 
+
 const FoodDisplay = ({ category }) => {
   const AllProduct = useSelector((state) => state.allProduct.allProduct);
   // console.log("food", AllProduct);
+
 
   return (
     <div className="food-display">
@@ -25,6 +27,7 @@ const FoodDisplay = ({ category }) => {
                 price={item.price}
                 description={item.description}
                 image={item.image}
+               
               />
             );
           }
