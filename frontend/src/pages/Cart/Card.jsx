@@ -1,13 +1,19 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import "./Card.css";
 import { removeFromCart } from "../../store/slice/CardSlice";
 import { useSelector, useDispatch } from "react-redux";
+
+import CardTotal from "./CardTotal";
 const Card = () => {
+  useEffect(() => {
+    document.title = "Food Delivery || card"
+  }, []);
+  const buttonTitle ="Proceed to checkout"
   const cardItems = useSelector((state) => state.card.Card);
-  console.log(cardItems);
+
   const dispatch = useDispatch();
   const handleRemoveItem = (id) => {
-    console.log(id);
+    // console.log(id);
     dispatch(removeFromCart(id));
   };
 
@@ -41,6 +47,19 @@ const Card = () => {
             </div>
           );
         })}
+      </div>
+      <div className="card-bottom">
+        <CardTotal buttonTitle={buttonTitle} />
+
+        <div className="card-promocode">
+          <div>
+            <p>If you have promo code ,Enter it here</p>
+            <div className="card-promocode-input">
+              <input type="text" placeholder="promocode" />
+              <button>Submit</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
