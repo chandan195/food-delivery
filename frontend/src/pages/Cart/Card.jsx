@@ -4,6 +4,7 @@ import { removeFromCart } from "../../store/slice/CardSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 import CardTotal from "./CardTotal";
+import EmptyCard from "./EmptyCard";
 const Card = () => {
   useEffect(() => {
     document.title = "Food Delivery || card"
@@ -18,6 +19,7 @@ const Card = () => {
   };
 
   return (
+    cardItems.length===0?<EmptyCard/>:
     <div className="card">
       <div className="card-item">
         <div className="card-items-title">

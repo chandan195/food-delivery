@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     /* position: sticky; */
-    
+
 }
 
 .navbar .logo {
@@ -44,7 +44,7 @@
     font-size: 20px;
     color: #f14343;
     padding-bottom: 2px;
-    border-bottom: 2px solid #f14343;
+    /* border-bottom: 2px solid #f14343; */
 }
 
 .navbar li {
@@ -57,13 +57,22 @@
 
 .navbar-search-icon .dot {
     position: absolute;
+    width: 60%;
     min-width: 10px;
     min-height: 10px;
     background-color: #f14343;
-    /* color: #f14343; */
-    border-radius: 5px;
-    top: -8px;
-    right: -8px;
+
+    border-radius: 50%;
+    top: -4px;
+    right: -5px;
+
+}
+
+.navbar-search-icon .dot p {
+    margin-left: 25%;
+    color: white;
+    align-items: center;
+    font-size: 15px;
 }
 
 @media (max-width: 1050px) {
@@ -118,12 +127,12 @@
 }
 
 @media (max-width: 750px) {
-    
+
 
     .navbar-menu {
-       display: none;
+        display: none;
     }
 
-   
+
 
 }

@@ -1,0 +1,29 @@
+.empty-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    max-width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    align-items: space-between;
+
+  }
+  
+  .empty-card-header {
+    margin-bottom: 16px;
+  }
+  
+  .empty-card-content {
+    color: black;
+ 
+   
+  }
+
+   .empty-card-content img{
+    
+    width: 100%;
+    /* background: transparent; */
+    background-color: tomato;
+  }
