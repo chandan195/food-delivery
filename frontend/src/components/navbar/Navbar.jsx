@@ -3,8 +3,13 @@ import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const cardItems = useSelector((state) => state.card.Card);
+  // console.log(cardItems.length)
+  const totalItems = cardItems.reduce((price, item) => price + item.qty, 0);
+  // console.log("total items", totalItems);
   return (
     <div className="navbar">
       <Link to="/">
@@ -51,7 +56,9 @@ const Navbar = ({ setShowLogin }) => {
               onClick={() => setMenu("card")}
             />
           </Link>
-          <div className="dot"> </div>
+          <div className={totalItems=== 0 ? "" : "dot"}>
+            <p> {totalItems===0?"":totalItems}</p>
+          </div>
         </div>
         <button onClick={() => setShowLogin(true)}>sign in</button>
       </div>

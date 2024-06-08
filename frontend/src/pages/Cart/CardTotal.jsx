@@ -9,10 +9,11 @@ const CardTotal = ({ buttonTitle }) => {
     (price, item) => price + item.price * item.qty,
     0
   );
-  const deliveryFee = 2;
+  const deliveryFee = grandTotal>0?2:"";
   //   console.log(grandTotal);
 
   return (
+    
     <div className="card-total">
       <h2>Card Total</h2>
       <div className="card-total-details">
