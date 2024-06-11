@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { connectDataBase } from './config/db.js';
+import foodRouter from './routes/foodRoute.js';
 
 
 //app config
@@ -16,6 +17,12 @@ app.use (cors());
 
 //db connection
 connectDataBase();
+
+
+
+// api endpoints
+ app.use("/api/food" ,foodRouter)
+
 
 app.get('/', (req, res) =>{
     res.send(" hello Api working at http://localhost:4000")
