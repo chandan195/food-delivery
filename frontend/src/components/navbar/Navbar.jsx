@@ -2,14 +2,20 @@
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-const Navbar = ({ setShowLogin ,token ,setToken }) => {
+const Navbar = ({ setShowLogin, token, setToken }) => {
   const [menu, setMenu] = useState("home");
   const cardItems = useSelector((state) => state.card.Card);
   // console.log(cardItems.length)
   const totalItems = cardItems.reduce((price, item) => price + item.qty, 0);
   // console.log("total items", totalItems);
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/");
+  };
   return (
     <div className="navbar">
       <Link to="/">
@@ -56,11 +62,30 @@ const Navbar = ({ setShowLogin ,token ,setToken }) => {
               onClick={() => setMenu("card")}
             />
           </Link>
-          <div className={totalItems=== 0 ? "" : "dot"}>
-            <p> {totalItems===0?"":totalItems}</p>
+          <div className={totalItems === 0 ? "" : "dot"}>
+            <p> {totalItems === 0 ? "" : totalItems}</p>
           </div>
         </div>
-        <button onClick={() => setShowLogin(true)}>sign in</button>
+        {!token ? (
+          <button onClick={() => setShowLogin(true)}>sign in</button>
+        ) : (
+          <div className="navbar-profile">
+            <img src={assets.profile_icon} alt="profile" />
+            <ul className="navbar-profile-dropdown">
+              <li>
+                {" "}
+                <img src={assets.bag_icon} alt="bag" />
+                <p>Order</p>
+              </li>
+              <hr />
+              <li onClick={logout}>
+                {" "}
+                <img src={assets.logout_icon} alt="logout" />
+                <p>Logout</p>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
