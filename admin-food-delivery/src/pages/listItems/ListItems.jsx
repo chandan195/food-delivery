@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./ListItems.css";
 import axios from "axios";
 import {toast} from "react-toastify";
-const ListItems = () => {
-  const url = "http://localhost:4000";
+const ListItems = ({url}) => {
+  // const url = "http://localhost:4000";
   const [list, setList] = useState([]);
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`);

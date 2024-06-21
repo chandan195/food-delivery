@@ -11,12 +11,17 @@ import LoginPopup from "./components/LoginPopup/LoginPopup";
 // import { useEffect } from 'react'
 
 function App() {
-  const[showLogin ,setShowLogin] =useState(false)
+  const [showLogin, setShowLogin] = useState(false);
+  const [token, setToken] = useState("");
   return (
     <BrowserRouter>
-    {showLogin ?<LoginPopup  setShowLogin={setShowLogin}/>:<></>}
+      {showLogin ? (
+        <LoginPopup setToken={setToken} setShowLogin={setShowLogin} />
+      ) : (
+        <></>
+      )}
       <div className="app">
-        <Navbar   setShowLogin={setShowLogin}/>
+        <Navbar setShowLogin={setShowLogin} token={token} setToken={setToken} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/card" element={<Card />} />

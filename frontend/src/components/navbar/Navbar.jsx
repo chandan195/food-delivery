@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-const Navbar = ({ setShowLogin }) => {
+const Navbar = ({ setShowLogin ,token ,setToken }) => {
   const [menu, setMenu] = useState("home");
   const cardItems = useSelector((state) => state.card.Card);
   // console.log(cardItems.length)
