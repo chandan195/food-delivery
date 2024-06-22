@@ -5,11 +5,11 @@ import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store/Store.jsx";
 
-const url = "http://localhost:4000";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   
   <React.StrictMode>
-    <Provider store={store}  url={url}>
+    <Provider store={store}  >
       <App />
     </Provider>
   </React.StrictMode>
