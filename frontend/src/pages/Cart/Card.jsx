@@ -1,5 +1,6 @@
 import React,{ useEffect } from "react";
 import "./Card.css";
+
 import { removeFromCart } from "../../store/slice/CardSlice";
 import { useSelector, useDispatch } from "react-redux";
 

@@ -7,10 +7,9 @@ import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import { useEffect, useState } from "react";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
-// import { food_list } from './assets/assets'
-// import { useEffect } from 'react'
 
 function App() {
+  
   const [showLogin, setShowLogin] = useState(false);
   const [token, setToken] = useState("");
   useEffect(() => {
