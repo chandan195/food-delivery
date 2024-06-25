@@ -5,17 +5,23 @@ import Home from "./pages/Home/Home";
 import Card from "./pages/Cart/Card";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
-import { useEffect, useState } from "react";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
 
+import { useEffect, useState } from "react";
+
+
+
 function App() {
-  
+ 
   const [showLogin, setShowLogin] = useState(false);
   const [token, setToken] = useState("");
+  console.log("token",token);
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
     }
+  
   }, []);
   return (
     <BrowserRouter>
