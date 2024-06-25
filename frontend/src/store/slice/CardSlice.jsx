@@ -1,52 +1,50 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+// import { useState } from "react";
 
+// const url = "http://localhost:4000"
+ let tokenData =localStorage.getItem("token");
 const CardSlice = createSlice({
-    name: 'Card',
-    initialState:{
-        Card:[],
+  name: "Card",
+  initialState: {
+    Card: [],
+   token: tokenData
+  },
+
+  reducers: {
+   
+
+    addToCart: (state, action) => {
+      // console.log(action.payload)
+      const existingItem = state.Card.find(
+        (item) => item.id === action.payload.id
+      );
+      
+      if (existingItem) {
+        state.Card = state.Card.map((item) =>
+          item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item
+        );
+      } else {
+        state.Card.push(action.payload);
+      }
+      // if(token){
+      //    axios.post(`${url}/api/cart/add`,`${state.Card}`,{header:{token}})
+      // }
     },
-    reducers:{
-        addToCart: (state, action) => {
-            const existingItem = state. Card.find(
-              (item) => item.id === action.payload.id
-            );
-            if (existingItem) {
-              state.Card = state.Card.map((item) =>
-                item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item
-              );
-            } else {
-              state.Card.push(action.payload);
-            }
-           
-      
-            // localStorage.setItem("cartItems", JSON.stringify(state.cart));
-          },
-          removeFromCart: (state, action) => {
-            state.Card = state.Card.filter((item) => item.id !== action.payload);
-            // localStorage.setItem("cartItems", JSON.stringify(state.cart));
-          },
+    removeFromCart: (state, action) => {
+      state.Card = state.Card.filter((item) => item.id !== action.payload);
+    },
 
-          incrementQty: (state, action) => {
-            state.Card = state.Card.map((item) =>
-              item.id === action.payload ? { ...item, qty: item.qty + 1 } : item
-            );
-            // toast.success("Product qty increase from cart" ,{position:"top-center"})
-            // localStorage.setItem("cartItems", JSON.stringify(state.cart));
-          },
-      
-          decrementQty: (state, action) => {
-            //* ToDo: handle increment
-            state.Card = state.Card.map((item) =>
-             
-              item.id === action.payload ? { ...item, qty: item.qty - 1 } : item
-              
-            );
-      
-           
-          },
 
-    }
+    decrementQty: (state, action) => {
+      //* ToDo: handle increment
+      state.Card = state.Card.map((item) =>
+        item.id === action.payload ? { ...item, qty: item.qty - 1 } : item
+      );
+    },
+  },
 });
 
-export const {addToCart ,removeFromCart ,incrementQty ,decrementQty} =CardSlice.actions;
+export const { addToCart, removeFromCart,  decrementQty} =
+  CardSlice.actions;
 export default CardSlice.reducer;

@@ -17,13 +17,13 @@ const loginUser = async (req, res) => {
     if (!isMatch) {
       return res.json({ success: false, message: "Invalid password" });
     }
-
-    const token = createToken(user._id);
-    res.json({ success: true, token });
-    console.log(token);
+    const token =jwt.sign({id: user._id},process.env.JWT_SECRET)
+    // const token = createToken(user._id);
+    res.json({ success: true, token: token });
+    // console.log("token",token);
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error " });
+    // console.log(error);
+    res.status(401).json({ success: false, message: "Error " });
   }
 };
 
@@ -39,7 +39,7 @@ const registerUser = async (req, res) => {
     // checking is user already registered
     const exist = await userModel.findOne({ email: email });
     if (exist) {
-      return res.json({ success: false, message: "user already registered" });
+      return res.status(401).json({ success: false, message: "user already registered" });
     }
     //validating email format , strong password
     if (!validator.isEmail(email)) {
@@ -67,11 +67,13 @@ const registerUser = async (req, res) => {
     });
 
     const user = await newUser.save();
-    const token = createToken(user._id);
-    res.json({ success: true, token });
-    console.log("token", token);
+    // const token = createToken(user._id);
+    const token =jwt.sign({id: user._id},process.env.JWT_SECRET)
+    res.json({success:true, token:token });
+    // console.log("token key", token);
+   
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.json({ success: false, massage: "error" });
   }
 };

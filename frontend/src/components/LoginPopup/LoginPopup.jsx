@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./LoginPupup.css";
 import { assets } from "../../assets/assets";
 import axios from "axios";
+// import { useDispatch } from "react-redux";
+// import { setTokenValue } from "../../store/slice/CardSlice";
+
 const LoginPopup = ({ setShowLogin, setToken }) => {
+  // const dispatch = useDispatch();
   const [currState, setCurrState] = useState("Login");
   const url = "http://localhost:4000";
   const [data, setData] = useState({
@@ -22,16 +26,17 @@ const LoginPopup = ({ setShowLogin, setToken }) => {
     let newUrl = url;
     if (currState === "Login") {
       newUrl = `${url}/api/user/login`;
-      console.log(newUrl);
+       console.log(newUrl);
     } else {
       newUrl = `${url}/api/user/register`;
-      console.log(newUrl);
+       console.log(newUrl);
     }
 
     const response = await axios.post(newUrl, data);
 
     if (response.data.success) {
       setToken(response.data.token);
+      
       localStorage.setItem("token", response.data.token);
       setShowLogin(false);
     } else {
