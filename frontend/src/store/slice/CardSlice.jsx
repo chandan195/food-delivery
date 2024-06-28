@@ -1,18 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-// import { useState } from "react";
 
-// const url = "http://localhost:4000"
- let tokenData =localStorage.getItem("token");
+  const tokenData =localStorage.getItem("token");
 const CardSlice = createSlice({
   name: "Card",
   initialState: {
     Card: [],
-   token: tokenData
+   token:tokenData,
   },
 
   reducers: {
    
+    // setToken: (state, action) => state.token = tokenData,
 
     addToCart: (state, action) => {
       // console.log(action.payload)
@@ -27,8 +25,9 @@ const CardSlice = createSlice({
       } else {
         state.Card.push(action.payload);
       }
-      // if(token){
-      //    axios.post(`${url}/api/cart/add`,`${state.Card}`,{header:{token}})
+      // if(tokenData){
+      //   // console.log("token",tokenData ,"product_id "+ action.payload.id);
+      //    axios.post(`${url}/api/cart/add`,`${action.payload.id}`,{header:{tokenData}})
       // }
     },
     removeFromCart: (state, action) => {
