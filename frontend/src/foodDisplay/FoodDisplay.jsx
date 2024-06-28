@@ -8,14 +8,15 @@ import FoodItem from "../components/FoodItem/FoodItem";
 
 const FoodDisplay = ({ category  }) => {
   const ListProduct = useSelector((state) => state.allProduct.data.data);
-  console.log(
-    "list",
-    useSelector((state) => state.allProduct)
-  );
+  // console.log(
+  //   "list",
+  //   useSelector((state) => state.allProduct)
+  // );
 
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("dispatch", dispatch(fetchAuth()));
+    dispatch(fetchAuth());
+    // console.log("dispatch", dispatch(fetchAuth()));
   }, [dispatch]);
 
   const url = "http://localhost:4000";

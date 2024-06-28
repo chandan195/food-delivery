@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./FoodItem.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decrementQty } from "../../store/slice/CardSlice";
 import { assets } from "../../assets/assets";
+import axios from "axios";
+
+const url = "http://localhost:4000";
+
 const FoodItem = ({ id, name, price, description, image }) => {
   const [itemCount, setItemCount] = useState(0);
 
- 
-
+  const selectToken = useSelector((state) => state.card.token);
+  // console.log(selector)
   const dispatch = useDispatch();
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     dispatch(
       addToCart({
         id: id,
@@ -21,6 +25,36 @@ const FoodItem = ({ id, name, price, description, image }) => {
       })
     );
     setItemCount((prev) => prev + 1);
+    if (selectToken) {
+      // console.log("tokenVAlue "+ selectToken ," ,id ",id);
+     
+
+
+      const headers = {
+        // "Content-Type": "application/json",
+        "token":localStorage.getItem("token")
+      };
+      const itemId ={
+        id,
+       
+      }
+       console.log("items id",itemId)
+      await axios.post(`${url}/api/cart/add`, itemId, { headers })
+      // * todo: work on how to send data
+        .then((res) => {
+          console.log(res);
+
+           console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+
+
+
+    
+    }
   };
 
   const handleDecrement = (id) => {

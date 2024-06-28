@@ -6,23 +6,28 @@ import Card from "./pages/Cart/Card";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
-
+// import {setTokenValue} from "./store/slice/CardSlice.js"
 import { useEffect, useState } from "react";
 
 
 
 function App() {
- 
+
+//? const name =import.meta.env.VITE_APP_FOOD_NAME
+//  console.log(name)
+
+
+
   const [showLogin, setShowLogin] = useState(false);
   const [token, setToken] = useState("");
-  console.log("token",token);
+  // console.log("token",token);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
     }
   
-  }, []);
+  }, [token]);
   return (
     <BrowserRouter>
       {showLogin ? (
