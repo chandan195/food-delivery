@@ -6,16 +6,24 @@ import userModel from "../models/userModel.js"
 const addToCard = async(req ,res)=>{
 try {
     let userData= await userModel.findOne({_id:req.body.userId});
-    // console.log(userData)
+    //   console.log({_id:req.body.userId})
+    //  console.log("userData",userData)
     let cartData= await userData.cartData;
+    //     console.log("cardData",cartData)
+    
     if(!cartData[req.body.itemId]){
+       
      cartData[req.body.itemId]=1;
+     
     }else{
         cartData[req.body.itemId]+=1 ;
     }
+    //  console.log("checking",cartData[{_id:req.body.userId}])
     await userModel.findByIdAndUpdate(req.body.userId,{cartData});
+    // console.log(req.body.userId,cartData)
+    //update data base with id and quantity
     res.json({success:true ,massage:"added to card"});
-    // console.log(res)
+    //  console.log(req.body.userId,cartData)
 } catch(error){
     console.log(error);
     res.json({success:false ,massage:"error "});
