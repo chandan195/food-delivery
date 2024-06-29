@@ -14,52 +14,60 @@ const FoodItem = ({ id, name, price, description, image }) => {
   // console.log(selector)
   const dispatch = useDispatch();
 
-  const handleAdd = async () => {
-    dispatch(
-      addToCart({
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        qty: 1,
-      })
-    );
-    setItemCount((prev) => prev + 1);
+  const handleAdd = (id, itemCount, name, price, image) => {
     if (selectToken) {
-      // console.log("tokenVAlue "+ selectToken ," ,id ",id);
-     
-
-
       const headers = {
-        // "Content-Type": "application/json",
-        "token":localStorage.getItem("token")
+        token: localStorage.getItem("token"),
       };
-      const itemId ={
-        id,
-       
-      }
-       console.log("items id",itemId)
-      await axios.post(`${url}/api/cart/add`, itemId, { headers })
-      // * todo: work on how to send data
+      const itemId = id;
+
+      // console.log( itemId);
+      axios
+        .post(`${url}/api/cart/add`, { itemId }, { headers })
+
         .then((res) => {
           console.log(res);
 
-           console.log(res.data);
+          console.log(res.data);
+          dispatch(
+            addToCart({
+              id: id,
+              name: name,
+              price: price,
+              image: image,
+              qty: 1,
+            })
+          );
+          setItemCount((prev) => prev + 1);
         })
         .catch((err) => {
           console.log(err);
         });
-
-
-
-
-    
     }
   };
 
   const handleDecrement = (id) => {
-    dispatch(decrementQty(id));
-    setItemCount((prev) => prev - 1);
+    if (selectToken) {
+      const headers = {
+        token: localStorage.getItem("token"),
+      };
+      const itemId = id;
+
+      axios
+        .post(`${url}/api/cart/remove`, { itemId }, { headers })
+
+        .then((res) => {
+          console.log(res);
+
+          console.log(res.data);
+
+          dispatch(decrementQty(id));
+          setItemCount((prev) => prev - 1);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
