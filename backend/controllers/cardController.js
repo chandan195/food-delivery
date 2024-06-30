@@ -22,7 +22,7 @@ try {
     await userModel.findByIdAndUpdate(req.body.userId,{cartData});
     // console.log(req.body.userId,cartData)
     //update data base with id and quantity
-    res.json({success:true ,massage:"added to card"});
+    res.json({success:true ,massage:"added to card",cartData:cartData});
     //  console.log(req.body.userId,cartData)
 } catch(error){
     console.log(error);

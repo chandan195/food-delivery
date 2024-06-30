@@ -5,7 +5,7 @@ import { addToCart, decrementQty } from "../../store/slice/CardSlice";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 
-const url = "http://localhost:4000";
+const url = import.meta.env.VITE_FOOD_URL;
 
 const FoodItem = ({ id, name, price, description, image }) => {
   const [itemCount, setItemCount] = useState(0);
@@ -26,9 +26,9 @@ const FoodItem = ({ id, name, price, description, image }) => {
         .post(`${url}/api/cart/add`, { itemId }, { headers })
 
         .then((res) => {
-          console.log(res);
+           console.log(res);
 
-          console.log(res.data);
+          // console.log(res.data);
           dispatch(
             addToCart({
               id: id,
@@ -70,6 +70,31 @@ const FoodItem = ({ id, name, price, description, image }) => {
     }
   };
 
+ 
+  useEffect(() => {
+    const headers = {
+      token: selectToken ,
+    };
+    async function loadData() {
+      // ! handle response 
+      const response = axios.post(`${url}/api/cart/get`, {}, { headers });
+     
+      const data= (await(await response).data.cartData);
+      
+             
+      // console.log("get Data1", data);
+      
+      Object.entries(data).forEach(([key, value]) => {
+        // console.log(`${key} ${value}`); 
+
+        id===key ? setItemCount(value):""
+      });
+       
+    }
+    loadData();
+    
+  }, [setItemCount, selectToken ,itemCount,id]);
+
   return (
     <div className="food-item">
       <div className="food-item-img-container">
@@ -92,6 +117,9 @@ const FoodItem = ({ id, name, price, description, image }) => {
               className="food-item"
               onClick={() => handleDecrement(id)}
             />
+           
+
+           
             <p>{itemCount}</p>
             <img
               onClick={() => handleAdd(id, itemCount, name, price, image)}
