@@ -12,7 +12,7 @@ const Card = () => {
   }, []);
   const buttonTitle ="Proceed to checkout"
   const cardItems = useSelector((state) => state.card.Card);
-
+console.log("cart",cardItems)
   const dispatch = useDispatch();
   const handleRemoveItem = (id) => {
     // console.log(id);

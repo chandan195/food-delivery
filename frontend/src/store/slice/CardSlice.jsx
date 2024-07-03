@@ -10,7 +10,7 @@ const CardSlice = createSlice({
 
   reducers: {
    
-    // setToken: (state, action) => state.token = tokenData,
+    
 
     addToCart: (state, action) => {
       // console.log(action.payload)
@@ -25,10 +25,7 @@ const CardSlice = createSlice({
       } else {
         state.Card.push(action.payload);
       }
-      // if(tokenData){
-      //   // console.log("token",tokenData ,"product_id "+ action.payload.id);
-      //    axios.post(`${url}/api/cart/add`,`${action.payload.id}`,{header:{tokenData}})
-      // }
+    
     },
     removeFromCart: (state, action) => {
       state.Card = state.Card.filter((item) => item.id !== action.payload);

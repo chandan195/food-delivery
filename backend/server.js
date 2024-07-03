@@ -5,7 +5,7 @@ import foodRouter from './routes/foodRoute.js';
 import userRouter from "./routes/userRoute.js"
 import "dotenv/config"
 import cardRouter from './routes/cardRoute.js';
-
+import orderRouter from './routes/orderRoute.js';
 //app config
 
 const app = express();
@@ -29,7 +29,8 @@ connectDataBase();
  app.use("/api/user",userRouter);
 
  app.use("/api/cart",cardRouter);
-
+ 
+app.use("/api/order",orderRouter);
 
 app.get('/', (req, res) =>{
     res.send(" hello Api working at http://localhost:4000")

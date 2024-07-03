@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
-const db =
-  "mongodb+srv://fooddelivery:fooddelivery@cluster0.tjhrwid.mongodb.net/food-del"; 
+// const db = 'process.env.MONGOOSE_DATABASE_ID'; 
   //!mongooseDataBase id
 
 export const connectDataBase = async () => {
-  await mongoose.connect(db).then(() => console.log("Connect the database"));
+  await mongoose.connect(process.env.MONGOOSE_DATABASE_ID).then(() => console.log("Connect the database"));
 };
 //? connect to DataBase
