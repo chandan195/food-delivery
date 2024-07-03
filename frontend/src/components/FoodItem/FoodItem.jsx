@@ -10,32 +10,34 @@ const url = import.meta.env.VITE_FOOD_URL;
 const FoodItem = ({ id, name, price, description, image }) => {
   const [itemCount, setItemCount] = useState(0);
 
-  const selectToken = useSelector((state) => state.card.token);
-  // console.log(selector)
+  const selectToken = localStorage.getItem("token");
+  // console.log(itemCount);
   const dispatch = useDispatch();
 
   const handleAdd = (id, itemCount, name, price, image) => {
     if (selectToken) {
       const headers = {
         token: localStorage.getItem("token"),
+       
       };
+      
+// console.log(headers);
       const itemId = id;
-
-      // console.log( itemId);
+      console.log( itemId);
       axios
         .post(`${url}/api/cart/add`, { itemId }, { headers })
 
         .then((res) => {
-           console.log(res);
+          console.log(res);
 
-          // console.log(res.data);
+           console.log(res.data);
           dispatch(
             addToCart({
               id: id,
               name: name,
               price: price,
               image: image,
-              qty: 1,
+              qty: itemCount,
             })
           );
           setItemCount((prev) => prev + 1);
@@ -52,15 +54,11 @@ const FoodItem = ({ id, name, price, description, image }) => {
         token: localStorage.getItem("token"),
       };
       const itemId = id;
-
       axios
         .post(`${url}/api/cart/remove`, { itemId }, { headers })
-
         .then((res) => {
           console.log(res);
-
-          console.log(res.data);
-
+          // console.log(res.data);
           dispatch(decrementQty(id));
           setItemCount((prev) => prev - 1);
         })
@@ -70,30 +68,21 @@ const FoodItem = ({ id, name, price, description, image }) => {
     }
   };
 
- 
   useEffect(() => {
     const headers = {
-      token: selectToken ,
+      token: selectToken,
     };
     async function loadData() {
-      // ! handle response 
       const response = axios.post(`${url}/api/cart/get`, {}, { headers });
-     
-      const data= (await(await response).data.cartData);
-      
-             
-      // console.log("get Data1", data);
-      
+      const data = await (await response).data.cartData;
+      //  console.log("get Data1", data);
       Object.entries(data).forEach(([key, value]) => {
-        // console.log(`${key} ${value}`); 
-
-        id===key ? setItemCount(value):""
+        //  console.log(`${key} ${value}`);
+        id === key ? setItemCount(value) : "";
       });
-       
     }
     loadData();
-    
-  }, [setItemCount, selectToken ,itemCount,id]);
+  }, [setItemCount, selectToken, itemCount, id]);
 
   return (
     <div className="food-item">
@@ -117,9 +106,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
               className="food-item"
               onClick={() => handleDecrement(id)}
             />
-           
 
-           
             <p>{itemCount}</p>
             <img
               onClick={() => handleAdd(id, itemCount, name, price, image)}
