@@ -1,6 +1,6 @@
 import userModel from "../models/userModel.js";
 
-//add items to user card
+//*add items to user card
 
 const addToCard = async (req, res) => {
   try {
@@ -30,7 +30,7 @@ const addToCard = async (req, res) => {
   }
 };
 
-//remove items from user card
+//*remove items from user card
 
 const removeFromCard = async (req, res) => {
   try {
@@ -47,7 +47,7 @@ const removeFromCard = async (req, res) => {
   }
 };
 
-// fetch user card data
+//*fetch user card data
 
 const getCard = async (req, res) => {
   try {
