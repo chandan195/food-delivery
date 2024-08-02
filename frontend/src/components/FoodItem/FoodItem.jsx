@@ -10,7 +10,7 @@ const url = import.meta.env.VITE_FOOD_URL;
 const FoodItem = ({ id, name, price, description, image }) => {
   const [itemCount, setItemCount] = useState(0);
 
-  const selectToken =  localStorage.getItem("token");
+  const selectToken = localStorage.getItem("token");
   // console.log(itemCount);
   const dispatch = useDispatch();
 
@@ -18,19 +18,18 @@ const FoodItem = ({ id, name, price, description, image }) => {
     if (selectToken) {
       const headers = {
         token: localStorage.getItem("token"),
-       
       };
-      
-// console.log(headers);
+
+      // console.log(headers);
       const itemId = id;
-      console.log( itemId);
+      console.log(itemId);
       axios
         .post(`${url}/api/cart/add`, { itemId }, { headers })
 
         .then((res) => {
           console.log(res);
 
-           console.log(res.data);
+          console.log(res.data);
           dispatch(
             addToCart({
               id: id,
@@ -76,10 +75,15 @@ const FoodItem = ({ id, name, price, description, image }) => {
       const response = axios.post(`${url}/api/cart/get`, {}, { headers });
       const data = await (await response).data.cartData;
       //  console.log("get Data1", data);
+      let totalQtyOfProduct = 0;
       Object.entries(data).forEach(([key, value]) => {
-        //  console.log(`${key} ${value}`);
+        //console.log(`${key} ${value}`);
+        totalQtyOfProduct += value;
         id === key ? setItemCount(value) : "";
       });
+
+      console.log("totalQtyOfProduct", totalQtyOfProduct);
+     
     }
     loadData();
   }, [setItemCount, selectToken, itemCount, id]);
