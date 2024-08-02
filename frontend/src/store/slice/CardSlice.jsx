@@ -25,7 +25,7 @@ const CardSlice = createSlice({
       } else {
         state.Card.push(action.payload);
       }
-    
+    console.log(action.payload);
     },
     removeFromCart: (state, action) => {
       state.Card = state.Card.filter((item) => item.id !== action.payload);

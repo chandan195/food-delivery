@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import "./FoodDisplay.css";
-import { fetchAuth } from "../store/slice/AuthSlice";
+import { fetchAuth } from "../store/slice/AllProductSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import FoodItem from "../components/FoodItem/FoodItem";

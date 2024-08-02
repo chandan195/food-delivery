@@ -10,7 +10,7 @@ const url = import.meta.env.VITE_FOOD_URL;
 const FoodItem = ({ id, name, price, description, image }) => {
   const [itemCount, setItemCount] = useState(0);
 
-  const selectToken = localStorage.getItem("token");
+  const selectToken =  localStorage.getItem("token");
   // console.log(itemCount);
   const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
               name: name,
               price: price,
               image: image,
-              qty: itemCount,
+              qty: 1,
             })
           );
           setItemCount((prev) => prev + 1);

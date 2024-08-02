@@ -5,7 +5,9 @@ export const url = "http://localhost:4000";
 //make action
 export const fetchAuth = createAsyncThunk("fetchAuth", async () => {
   const response = await axios.get(`${url}/api/food/list`);
+  console.log(response.data);
   return response.data;
+  
 });
 
 const AllProductsSlice = createSlice({
