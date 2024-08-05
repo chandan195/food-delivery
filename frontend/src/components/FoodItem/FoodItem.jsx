@@ -79,7 +79,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
       Object.entries(data).forEach(([key, value]) => {
         //console.log(`${key} ${value}`);
         totalQtyOfProduct += value;
-        localStorage.setItem("totalQtyOfProduct",totalQtyOfProduct)
+        // localStorage.setItem("totalQtyOfProduct",totalQtyOfProduct)
         id === key ? setItemCount(value) : "";
       });
 
